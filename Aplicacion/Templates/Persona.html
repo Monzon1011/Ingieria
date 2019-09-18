@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <title>Personas</title>
+
+<script type="text/javascript" src="{% static "molestar.js" %}"></script>
+
+  </head>
+
+  <body>
+
+    {% for p in personas %}
+    		{{p.nombre}} - {{p.apellido}} - {{p.telefono }} - {{p.email}}  <br>
+    	{% endfor %}
+
+  </body>
+
+</html>

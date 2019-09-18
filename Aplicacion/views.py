@@ -1,21 +1,31 @@
-from django.shortcuts import render
-from .models import Persona, Compra, Producto
+from django.shortcuts import render, render_to_response
+from models import Persona, Compra, Producto
 # Create your views here.
 
-def Compra_list(request):
-    compra = Compra.objects.all()
-    return render(request, 'Aplicacion/Compra_list.html', {'Compra':compra})
-
-
 def Persona_list(request):
-    persona = Persona.objects.all()
-    return render(request, 'Aplicacion/Persona_list.html', {'Persona':persona})
+    if request.GET.get('id'):
+        idPersona = request.GET.get('id')
+        p = Persona.objects.filter(id=idPersona)
+
+    else:
+        p = Persona.objects.all()
+        return render_to_response('Persona.html', { 'personas' : p })
 
 
 def Producto_list(request):
-    producto = Producto.objects.all()
-    return render(request, 'Aplicacion/Producto_list.html', {'Producto':producto})
+    if request.GET.get('id'):
+        idProducto = request.GET.get('id')
+    	p = Producto.objects.filter(id=idProducto)
+
+    else:
+        p = Producto.objects.all()
+        return render_to_response('Producto.html', { 'productos' : p })
 
 
-def index(request):
-    return render(request, 'Aplicacion/index.html', {})
+def Compra_list(request):
+    if request.GET.get('id'):
+        idCompra = request.GET.get('id')
+        c = Compra.objects.filter(id=idCompra)
+    else:
+        c = Compra.objects.all()
+        return render_to_response('Compra.html', { 'compras' : c })
