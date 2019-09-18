@@ -1,0 +1,12 @@
+{% extends 'Aplcacion/index.html' %}
+{% block title %}Productos{% endblock %}
+  {% block content %}
+    <h1>Listado de Productos</h1>
+    <br><br>
+        {% for producto in producto.all %}
+        		Articulo: {{ producto.nombreProducto }} -
+             Marca: {{ producto.marca }} -
+             Descripcion: {{ producto.descripcion }} -
+             Nombre de Cliente: {{ producto.nombre }} <br><br>
+        {% endfor %}
+  {% endblock %}
